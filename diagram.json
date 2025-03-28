@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "author": "Guru Sankar Ajay Ravulapalli",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -57.6, "left": -139.16, "attrs": {} },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -245.6,
+      "left": -132.18,
+      "attrs": {}
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -239.8, "left": -9.6, "attrs": {} },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -63.59,
+      "left": 67.63,
+      "attrs": { "size": "17" }
+    },
+    { "type": "wokwi-a4988", "id": "drv1", "top": -244.8, "left": 168, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 236.8,
+      "left": -138.4,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -205.2,
+      "left": 272.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 176.75,
+      "left": 259.2,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pir1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pir1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "pir1:OUT", "esp:15", "green", [ "v0" ] ],
+    [ "relay1:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "relay1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "esp:13", "relay1:IN", "green", [ "h0" ] ],
+    [ "drv1:1A", "stepper1:A+", "green", [ "h0" ] ],
+    [ "drv1:1B", "stepper1:A-", "green", [ "h0" ] ],
+    [ "drv1:2A", "stepper1:B+", "green", [ "h0" ] ],
+    [ "drv1:2B", "stepper1:B-", "green", [ "h0" ] ],
+    [ "drv1:VDD", "esp:3V3", "green", [ "h0" ] ],
+    [ "drv1:GND.1", "esp:GND.3", "black", [ "v0" ] ],
+    [ "drv1:STEP", "esp:18", "green", [ "h0" ] ],
+    [ "drv1:DIR", "esp:19", "green", [ "h0" ] ],
+    [ "drv1:ENABLE", "esp:GND.3", "green", [ "h0" ] ],
+    [ "lcd1:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h0" ] ],
+    [ "esp:22", "lcd1:SCL", "green", [ "h0" ] ],
+    [ "led1:A", "esp:5", "green", [ "v0" ] ],
+    [ "led1:C", "esp:GND.3", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
